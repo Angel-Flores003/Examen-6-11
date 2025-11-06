@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 public class Program
 {
@@ -10,30 +10,29 @@ public class Program
         const string MsgLost = "You've lost!";        
         const int MaxCoins = 5;        
         int lives = 3, coins = 0, prob;
-        Random rand = new Random();
-        bool trap = false;
+        Random rand = new Random();        
 
         do
         {
             prob = rand.Next(1, 11);
-            if (prob <= 5)
+            if (prob <= 3)
             {
                 Console.WriteLine(MsgFoundTrap);
                 lives--;
                 Console.WriteLine($"Now you have {lives} lives");
                 Thread.Sleep(1000);
             }
-            else
+            if (lives > 0)
             {
                 prob = rand.Next(1, 11);
-                if (prob <= 7)
+                if (prob <= 5)
                 {
                     Console.WriteLine(MsgCoinFound);
                     coins++;
                     Console.WriteLine($"Now you have {coins} coins");
                     Thread.Sleep(1000);
                 }
-            }
+            }                        
         } while (lives > 0 && coins != MaxCoins);
         if (coins == MaxCoins)
         {
